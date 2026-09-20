@@ -32,7 +32,7 @@ public:
 
         while (temp)
         {
-            if (temp->next->id == reservationID)
+            if (temp->next->getId() == reservationID)
             {
               //Create a pointer to delete next item
               Reservation * node_to_delete = temp->next;
@@ -61,7 +61,7 @@ public:
             //If reservation found, print it out
             if (temp->id == reservationID)
             {
-              cout << temp->id << " " << temp->studentID << " " << temp->studentName << " " << temp->resourceID << " " << temp->date << endl;
+              cout << temp->getId() << " " << temp->getStudentId() << " " << temp->getStudentName() << " " << temp->getResourceId() << " " << temp->getDate() << endl;
               return;
             }
 
@@ -81,7 +81,7 @@ public:
 
         while (temp)
         {
-            cout << temp->id << " " << temp->studentID << " " << temp->studentName << " " << temp->resourceID << " " << temp->date << endl;
+            cout << temp->getId() << " " << temp->getStudentId() << " " << temp->getStudentName() << " " << temp->getResourceId() << " " << temp->getDate() << endl;
             temp = temp->next;
         }
     }
