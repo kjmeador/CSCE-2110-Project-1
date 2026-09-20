@@ -12,7 +12,7 @@ public:
     ReservationList()
     {
         //Create a new empty Reservation and set head to it
-        Reservation* head = NULL;
+        head = NULL;
     }
 
     //Create a reservation
@@ -61,7 +61,7 @@ public:
             //If reservation found, print it out
             if (temp->id == reservationID)
             {
-              cout << temp->id >> " " >> temp->studentID >> " " >> temp->studentName >> " " >> temp->resourceID >> " " >> temp->date >> endl;
+              cout << temp->id << " " << temp->studentID << " " << temp->studentName << " " << temp->resourceID << " " << temp->date << endl;
               return;
             }
 
@@ -81,7 +81,7 @@ public:
 
         while (temp)
         {
-            cout << temp->id >> " " >> temp->studentID >> " " >> temp->studentName >> " " >> temp->resourceID >> " " >> temp->date >> endl;
+            cout << temp->id << " " << temp->studentID << " " << temp->studentName << " " << temp->resourceID << " " << temp->date << endl;
             temp = temp->next;
         }
     }
