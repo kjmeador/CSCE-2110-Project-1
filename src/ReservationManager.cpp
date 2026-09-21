@@ -95,3 +95,96 @@ public:
         }
     }
 };
+//waiting list queue
+class WaitingListQueue {
+private:
+    QueueNode* front;
+    QueueNode* rear;
+public:
+    waitingListQueue() : front(nullptr), rear(nullptr) {}
+    void enqueue(int studentID, string studentName, int resourceId, string date) {
+        QueueNode* newNode = new QueueNode{studentID, studentName, resourceID, date, nullptr};
+        if(!rear) {
+            front = rear =newNode;
+        } else {
+            rear->next = newNode;
+            rear = newNode;
+        }
+        cout<< "{waiting list} Student " <<studentName<< " added to the waiting for reasource " << resourceId<< ".\n";
+    }
+    bool dequeueForResource(int resourceID, int& outStudentID, string& outStudentName, string& outDate) {
+        if(!front) return false;
+        if(front->resourceID == resourceID ) {
+            QueueNode* temp = front;
+            outStudentID = front->studentID;
+            outStudentName = front->studentName;
+            outDate = front->date;
+            if (!front) rear = nullpr;
+            delete temp;
+            return true;
+        } 
+        QueueNode* curr = front;
+        while (curr->next && curr->next->resourceID !=resourceID) {
+            curr = curr->next;
+        }
+        if (curr->next) {
+            QueueNode* temp = curr->next;
+            outStudentID = temp->studentID;
+            outStudentName = temp->studentName;
+            outDate = temp->date;
+            if(temp == rear) rear = curr;
+            curr->next = temp->next;
+            delete temp;
+            return true;
+        }
+        return false;
+    }
+void displayWaitingList() const {
+    cout<< "\n---Waiting List Queue ---\n";
+    if(!front) {
+        cout<< "waiting list is empty.\n";
+        return;
+    }
+    QueueNode* temp = front;
+    while (temp) {
+        cout<< "Student: "<<temp->studentName<< " ("<< temp->studentID
+            <<") waiting for resource: " << temp->resourceID
+            <<"  date: " << temp->date << "\n";
+        temp = temp->next;
+    }
+}
+};
+
+class CancellationStack {
+private:
+    StackNode* top;
+public:
+    CancellationStack() : top(nullptr) {}
+
+    void push(int id, int studentID, string studentName, int resourceID, stringdate) {
+        StackNode* newNode = new StackNode{id, studentID, studentName, resourceID, date};
+        top = newNode;
+    }
+    bool pop(int& outId, int& outStudentID, string& outStudentName, int& outResourceID, string& outDate) {
+        if(!top) return false;
+        StackNade* temp = top'
+        outId = top->id;
+        outStudentID = top->studentID;
+        outStudentName = top->studentName;
+        outResourceID = top->resourceID;
+        outDate = top->date;
+        top = top->next;
+        delete temp;
+        return true;
+    }
+    void displayHistory() const {
+        cout<< "\n--- Cancellation History ---\n";
+        if(!top) {
+            cout<< "no cancelled reservation ID: " << temp->id
+                << " student: " << temp->studentName
+                << " resource ID: " << temp->resourceID
+                << " date: "<< temp->date << "\n";
+            temp = temp->next;
+        }
+    }
+};
