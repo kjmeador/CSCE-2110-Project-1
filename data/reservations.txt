@@ -1,3 +1,1 @@
-R103,Spade,Card,0
-R101,Ace,Card,1
-R102,Jack,Card,1
+
