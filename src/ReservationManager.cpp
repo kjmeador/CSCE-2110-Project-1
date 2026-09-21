@@ -1,5 +1,6 @@
 #include "ReservationManager.h"
 #include <string>
+
 using namespace std;
 
 //Create a Linked List Class to store reservations
@@ -29,7 +30,15 @@ public:
     void remove(int reservationID)
     {
         Reservation* temp = head;
-
+        
+        //If head is the reservation to remove
+        if (temp && temp->getId() == reservationID)
+        {
+            head = temp->next;
+            delete temp;
+            return;
+        }
+        
         while (temp && temp->next)
         {
             if (temp->next->getId() == reservationID)
