@@ -11,6 +11,8 @@ private:
     string date;
 
 public:
+    Reservation* next;
+
     //Default constructor and initialized constructor
     Reservation();
     Reservation(int id, int studentId, string studentName, int resourceId, string date);
