@@ -30,7 +30,7 @@ public:
     {
         Reservation* temp = head;
 
-        while (temp)
+        while (temp && temp->next)
         {
             if (temp->next->getId() == reservationID)
             {
@@ -59,7 +59,7 @@ public:
         while (temp)
         {
             //If reservation found, print it out
-            if (temp->id == reservationID)
+            if (temp->getId() == reservationID)
             {
               cout << temp->getId() << " " << temp->getStudentId() << " " << temp->getStudentName() << " " << temp->getResourceId() << " " << temp->getDate() << endl;
               return;
