@@ -1,3 +1,8 @@
-R103,Spade,Card,0
-R101,Ace,Card,1
-R102,Jack,Card,1
+101,Study Room A,Study Room,1
+102,Study Room B,Study Room,0
+103,HP Laptop,Laptop,1
+104,Scientific Calculator,Calculator,1
+105,Lab Equipment Kit,Lab Equipment,0
+106,Math Tutoring,Tutoring,1
+107,Study Room C,Study Room,1
+108,Dell Laptop,Laptop,0
