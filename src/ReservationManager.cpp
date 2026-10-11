@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include "ReservationManager.h"
+#include "../include/ReservationManager.h"
 #include <string>
 
 using namespace std;
@@ -24,13 +24,8 @@ struct StackNode {
 };
 
 //Create a Linked List Class to store reservations
-class ReservationList
-{
-private:
-    Reservation* head;
 
-public:
-    ReservationList()
+    ReservationList::ReservationList()
     {
         //Create a new empty Reservation and set head to it
         head = NULL;
@@ -38,7 +33,7 @@ public:
 
     //Create a reservation
     //Insert new reservation, basic front-sert
-    void insert(int id, int studentID, string studentName, int resourceID, string date)
+    void ReservationList::insert(int id, int studentID, string studentName, int resourceID, string date)
     {
         Reservation* newReservation = new Reservation (id, studentID, studentName, resourceID, date);
         newReservation->next = head;
@@ -47,7 +42,7 @@ public:
 
     //Cancel a reservation
     //Linear search and remove reservation
-    void remove(int reservationID)
+    void ReservationList::remove(int reservationID)
     {
         Reservation* temp = head;
         
@@ -81,7 +76,7 @@ public:
     }
 
     //Search for a reservation
-    void search(int reservationID)
+    void ReservationList::search(int reservationID)
     {
         Reservation* temp = head;
 
@@ -104,7 +99,7 @@ public:
 
     //View all current reservtions
     //Traverse list and print
-    void print()
+    void ReservationList::print()
     {
         Reservation* temp = head;
 
@@ -114,7 +109,6 @@ public:
             temp = temp->next;
         }
     }
-};
 //waiting list queue
 class WaitingListQueue {
 private:
@@ -134,15 +128,24 @@ public:
     }
     bool dequeueForResource(int resourceID, int& outStudentID, string& outStudentName, string& outDate) {
         if(!front) return false;
-        if(front->resourceID == resourceID ) {
+
+        if (front->resourceID == resourceID) {
             QueueNode* temp = front;
+
             outStudentID = front->studentID;
             outStudentName = front->studentName;
             outDate = front->date;
-            if (!front) rear = nullptr;
+
+            front = front->next;
+
+            if (!front) {
+                rear = nullptr;
+            }
+
             delete temp;
             return true;
-        } 
+        }
+
         QueueNode* curr = front;
         while (curr->next && curr->next->resourceID != resourceID) {
             curr = curr->next;
@@ -182,8 +185,9 @@ public:
     CancellationStack() : top(nullptr) {}
 
     void push(int id, int studentID, string studentName, int resourceID, string date) {
-        StackNode* newNode = new StackNode{id, studentID, studentName, resourceID, date};
-        newNode->next = top;
+        StackNode* newNode = new StackNode{
+            id, studentID, studentName, resourceID, date, top
+        };
         top = newNode;
     }
     bool pop(int& outId, int& outStudentID, string& outStudentName, int& outResourceID, string& outDate) {
