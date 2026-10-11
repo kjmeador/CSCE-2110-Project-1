@@ -1,8 +1,4 @@
-101,Study Room A,Study Room,1
-102,Study Room B,Study Room,0
-103,HP Laptop,Laptop,1
-104,Scientific Calculator,Calculator,1
-105,Lab Equipment Kit,Lab Equipment,0
-106,Math Tutoring,Tutoring,1
-107,Study Room C,Study Room,1
-108,Dell Laptop,Laptop,0
+301,1001,Alice Smith,101,2026-10-11
+302,1002,Bob Johnson,103,2026-10-11
+303,1003,Charlie Brown,104,2026-10-12
+304,1004,Diana Miller,106,2026-10-12
