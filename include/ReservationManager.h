@@ -11,7 +11,7 @@ private:
 public:
     ReservationList();
 
-    void insert(int id, int studentID, string studentName, int resourceID, string date);
+    void insert(int id, int studentID, string studentName, string resourceID, string date);
     void remove(int reservationID);
     void search(int reservationID);
     void print(); 
