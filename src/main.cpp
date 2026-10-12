@@ -67,24 +67,34 @@ int main()
 
             case 2:
             {
+                
                 int studentID;
-                int resourceID;
+                string resourceID;
                 string studentName;
                 string date;
 
                 cout << "Enter student ID: ";
+                if (!(cin >> studentID) || studentID <= 0)
+                {
+                    cout << "Invalid student ID.\n";
+                    cin.clear();
+                    cin.ignore(10000, '\n');
+                    break;
+                }
+
+                cin.ignore(10000, '\n');
 
                 cout << "Enter student name: ";
                 getline(cin, studentName);
 
                 cout << "Enter resource ID: ";
-                cin >> resourceID;
+                getline(cin, resourceID);
 
                 cout << "Enter reservation date: ";
                 getline(cin, date);
 
-                Resource* resource =
-                    searchResource(resources, to_string(resourceID));
+
+                Resource* resource = searchResource(resources, resourceID);
 
                 if (resource == nullptr)
                 {
@@ -205,4 +215,3 @@ int main()
 
     return 0;
 }
-
