@@ -5,10 +5,9 @@ using namespace std;
 
 Reservation::Reservation()
     : id(0), studentId(0), studentName(""),
-      resourceId(0), date(""), next(NULL) {}
+      resourceId(""), date(""), next(NULL) {}
 
-Reservation::Reservation(int id, int studentId, string studentName,
-                         int resourceId, string date)
+Reservation::Reservation(int id, int studentId, string studentName, string resourceId, string date)
     : id(id), studentId(studentId), studentName(studentName),
       resourceId(resourceId), date(date), next(NULL) {}
 
@@ -24,7 +23,7 @@ string Reservation::getStudentName() {
     return studentName;
 }
 
-int Reservation::getResourceId() {
+string Reservation::getResourceId() {
     return resourceId;
 }
 
