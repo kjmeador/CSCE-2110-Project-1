@@ -161,13 +161,15 @@ int main() {
             string name, date;
 
             if (r && reservations.popNextWaiting(rid, sid, name, date)) {
-                reservations.insert(nextID, sid, name, rid, date);
-                r->setAvailability(false);
+                if (!reservations.insert(nextID, sid, name, rid, date)) {
+                    cout << "Could not assign the resource to the waiting student.\n";
+                    if (r) {
+                        r->setAvailability(true);
+                    }
+                    break;
+                }
 
-                cout << "Reservation cancelled. Waiting student "
-                     << name << " received reservation ID "
-                     << nextID << ".\n";
-                ++nextID;
+                r->setAvailability(false);
             } else {
                 if (r) {
                     r->setAvailability(true);
@@ -182,15 +184,27 @@ int main() {
             reservations.displayWaitingList();
             break;
 
+ 
         case 5: {
             // Restore the most recently cancelled reservation.
             string rid;
 
-            if (!reservations.undoCancellation(rid)) {
+            if (!reservations.peekCancellationResourceID(rid)) {
+                cout << "No cancellations to undo.\n";
                 break;
             }
 
             Resource* r = searchResource(resources, rid);
+
+            // Don't restore if another student currently has the resource.
+            if (r && !r->getAvailability()) {
+                cout << "Cannot undo: resource is already reserved.\n";
+                break;
+            }
+
+            if (!reservations.undoCancellation(rid)) {
+                break;
+            }
 
             if (r) {
                 r->setAvailability(false);
@@ -199,6 +213,7 @@ int main() {
             cout << "Cancellation undone; reservation restored.\n";
             break;
         }
+
 
         case 6: {
             int id;
