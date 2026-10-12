@@ -53,6 +53,7 @@ public:
                         string& studentName, string& date);
 
     // Cancellation history and undo.
+    bool peekCancellationResourceID(string& resourceID) const;
     bool undoCancellation(string& restoredResourceID);
     void displayCancellationHistory() const;
 
