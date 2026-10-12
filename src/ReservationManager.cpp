@@ -236,6 +236,18 @@ bool ReservationList::popNextWaiting(string resourceID, int& studentID,
     return false;
 }
 
+
+// Check the most recent cancellation without removing it from history.
+bool ReservationList::peekCancellationResourceID(string& resourceID) const
+{
+    if (!cancellationTop) {
+        return false;
+    }
+
+    resourceID = cancellationTop->resourceID;
+    return true;
+}
+
 // Restore the most recently cancelled reservation.
 bool ReservationList::undoCancellation(string& restoredResourceID)
 {
