@@ -9,7 +9,7 @@ using namespace std;
 struct QueueNode {
     int studentID;
     string studentName;
-    int resourceID;
+    string resourceID;
     string date;
     QueueNode* next;
 };
@@ -18,7 +18,7 @@ struct StackNode {
     int id;
     int studentID;
     string studentName;
-    int resourceID;
+    string resourceID;
     string date;
     StackNode* next;
 };
@@ -33,7 +33,7 @@ struct StackNode {
 
     //Create a reservation
     //Insert new reservation, basic front-sert
-    void ReservationList::insert(int id, int studentID, string studentName, int resourceID, string date)
+    void ReservationList::insert(int id, int studentID, string studentName, string resourceID, string date)
     {
         Reservation* newReservation = new Reservation (id, studentID, studentName, resourceID, date);
         newReservation->next = head;
@@ -116,7 +116,7 @@ private:
     QueueNode* rear;
 public:
     WaitingListQueue() : front(nullptr), rear(nullptr) {}
-    void enqueue(int studentID, string studentName, int resourceId, string date) {
+    void enqueue(int studentID, string studentName, string resourceId, string date) {
         QueueNode* newNode = new QueueNode{studentID, studentName, resourceId, date, nullptr};
         if(!rear) {
             front = rear = newNode;
@@ -126,7 +126,7 @@ public:
         }
         cout << "{waiting list} Student " << studentName << " added to the waiting for resource " << resourceId << ".\n";
     }
-    bool dequeueForResource(int resourceID, int& outStudentID, string& outStudentName, string& outDate) {
+    bool dequeueForResource(string resourceID, int& outStudentID, string& outStudentName, string& outDate) {
         if(!front) return false;
 
         if (front->resourceID == resourceID) {
@@ -184,7 +184,7 @@ private:
 public:
     CancellationStack() : top(nullptr) {}
 
-    void push(int id, int studentID, string studentName, int resourceID, string date) {
+    void push(int id, int studentID, string studentName, string resourceID, string date) {
         StackNode* newNode = new StackNode{
             id, studentID, studentName, resourceID, date, top
         };
