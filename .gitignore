@@ -23,7 +23,6 @@
 *.dll
 *.so.*
 
-
 # Fortran module files
 *.mod
 *.smod
@@ -38,6 +37,7 @@
 *.exe
 *.out
 *.app
+reservation_system
 
 # Build directories
 build/
