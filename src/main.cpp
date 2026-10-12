@@ -185,6 +185,7 @@ int main() {
             break;
 
  
+ 
         case 5: {
             // Restore the most recently cancelled reservation.
             string rid;
@@ -196,8 +197,13 @@ int main() {
 
             Resource* r = searchResource(resources, rid);
 
-            // Don't restore if another student currently has the resource.
-            if (r && !r->getAvailability()) {
+            if (!r) {
+                cout << "Cannot undo: resource was not found.\n";
+                break;
+            }
+
+            // Check availability before removing the cancellation from history.
+            if (!r->getAvailability()) {
                 cout << "Cannot undo: resource is already reserved.\n";
                 break;
             }
@@ -206,13 +212,12 @@ int main() {
                 break;
             }
 
-            if (r) {
-                r->setAvailability(false);
-            }
+            r->setAvailability(false);
 
             cout << "Cancellation undone; reservation restored.\n";
             break;
         }
+
 
 
         case 6: {
@@ -270,7 +275,6 @@ int main() {
                      << " active reservation(s)\n";
             }
 
-            cout << "\n--- Most Requested Resources ---\n";
             reservations.printMostRequestedResources();
 
             cout << "\n--- Waiting-List Statistics ---\n";
