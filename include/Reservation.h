@@ -7,7 +7,7 @@ private:
     int id;
     int studentId;
     string studentName;
-    int resourceId;
+    string resourceId;
     string date;
 
 public:
@@ -15,12 +15,12 @@ public:
 
     //Default constructor and initialized constructor
     Reservation();
-    Reservation(int id, int studentId, string studentName, int resourceId, string date);
+    Reservation(int id, int studentId, string studentName, string resourceId, string date);
 
     //Methods to return data from class
     int getId();
     int getStudentId();
     string getStudentName();
-    int getResourceId();
+    string getResourceId();
     string getDate();
 };
