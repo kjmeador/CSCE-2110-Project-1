@@ -192,12 +192,6 @@ int main() {
 
             Resource* r = searchResource(resources, rid);
 
-            if (r && !r->getAvailability()) {
-                cout << "Cannot undo: resource is already reserved. "
-                     << "Cancellation remains in history.\n";
-                break;
-            }
-
             if (r) {
                 r->setAvailability(false);
             }
